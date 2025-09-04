@@ -12,43 +12,43 @@
 
 ![Gazebo01](docs/images/gazebo_01.png)
 
-<!-- 目次 -->
+<!-- TABLE OF CONTENTS -->
 <details>
-  <summary>目次</summary>
+  <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#概要">概要</a>
+      <a href="#introduction">Introduction</a>
     </li>
     <li>
-      <a href="#環境構築">環境構築</a>
+      <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#環境条件">環境条件</a></li>
-        <li><a href="#インストール方法">インストール方法</a></li>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#実行方法">実行方法</a></li>
-    <li><a href="#写真立ての写真を差し替える方法">写真立ての写真を差し替える方法</a></li>
-    <li><a href="#ライセンス">License</a></li>
+    <li><a href="#launch-and-usage">Launch and Usage</a></li>
+    <li><a href="#how-to-replace-photos-in-picture-frames">How to Replace Photos in Picture Frames</a></li>
+    <li><a href="#license">License</a></li>
   </ol>
 </details>
 
 
-<!-- 概要 -->
-## 概要
-本パッケージは，AWSにより提供される家庭環境のWorldやモデルをGazebo Sim上にインポートし起動します．
+<!-- INTRODUCTION -->
+## Introduction
+This package imports and launches the World and models of the household environment, provided by AWS, on Gazebo Sim.
 
 
-<!-- セットアップ -->
-## セットアップ
+<!-- GETTING STARTED -->
+## Getting Started
 
-ここで，本レポジトリのセットアップ方法について説明します．
+This section describes how to set up this repository.
 
-<p align="right">(<a href="#readme-top">上に戻る</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-### 環境条件
+### Prerequisites
 
-まず，以下の環境を整えてから，次のインストール段階に進んでください．
+First, please set up the following environment before proceeding to the next installation stage.
 
 | System  | Version |
 | --- | --- |
@@ -58,55 +58,55 @@
 | Gazebo | Fortress |
 
 > [!NOTE]
-> `Ubuntu`や`ROS`のインストール方法に関しては，[SOBITS Manual](https://github.com/TeamSOBITS/sobits_manual#%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)に参照してください．
+> If you need to install `Ubuntu` or `ROS`, please check our [SOBITS Manual](https://github.com/TeamSOBITS/sobits_manual#%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6).
 
-<p align="right">(<a href="#readme-top">上に戻る</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-### インストール方法
+### Installation
 
-**AWS Small House Worldを使用するローカル環境，またはDockerコンテナ内でのセットアップ内容**
-1. ROSの`src`フォルダに移動します．
+**Development environment (local or Docker) where you will use AWS Small House World**
+
+1. Go to the `src` folder of ROS.
     ```sh
     $ cd ~/colcon_ws/src/
     ```
 
-2. 本レポジトリをcloneします．
+2. Clone this repository.
     ```sh
     $ git clone -b humble-devel https://github.com/TeamSOBITS/aws_small_house_world
     ```
-3. パッケージをコンパイルします．
+3. Compile the package.
     ```sh
     $ cd ~/colcon_ws/
     $ colcon build --symlink-install
     $ source ~/colcon_ws/install/setup.sh
     ```
-4. 環境変数のGZ_SIM_RESOURCE_PATHをパスに追加します．
+4. Add path to the environment variable GZ_SIM_RESOURCE_PATH.
      ```sh
     $ echo "export GZ_SIM_RESOURCE_PATH=${GZ_SIM_RESOURCE_PATH}:~/colcon_ws/install/aws_small_house_world/share/aws_small_house_world/models" >> ~/.bashrc
     ```
 
-<!-- 実行・操作方法 -->
-## 実行方法
+<!-- LAUNCH AND USAGE -->
+## Launch and Usage
 
-1. Small House WorldモデルをGazebo Sim上で起動します．
+1. Launch the Small House World model on Gazebo Sim.
     ```sh
     $ ros2 launch aws_small_house_world small_house.launch.py
     ```
 
-## 写真立ての写真を差し替える方法
+## How to Replace Photos in Picture Frames
 
-写真立てモデルでは2つのテクスチャを使用しています:
- - `aws_portraitA_01.png` - フレームのテクスチャ
- - `aws_portraitA_02.png` - 写真のテクスチャ
+Picture frames use two textures for the model:
+ - `aws_portraitA_01.png` - Frame texture
+ - `aws_portraitA_02.png` - Picture texture
 
-写真を変更するには，`aws_portraitA_02.png` ファイルを置き換える必要があります．
-新しい画像は，差し替える元の画像と同じアスペクト比にすると最もきれいに表示されます．
+To change a picture, one has to replace the `aws_portraitA_02.png` file. The new image will look best with same aspect ratio as the replaced image.
 
-以下は，ポートレートの種類ごとの解像度データと photos/ 内のカスタム画像を示す表です．
+Below is a table showing portrait type to picture resolution data and custom images from photos/.
 
 <details>
-<summary>ポートレートモデル</summary>
+<summary>Portrait Model</summary>
 
 | Portrait Model | Resolution | Photo |
 | --- | --- | --- |
@@ -134,22 +134,22 @@
 </details>
 
 
-## ライセンス
+<!-- LICENSE -->
+## License
 
-本ソフトウェアは，MIT Licenseの下で提供されています．[LICENSE](license-url)を確認してください．
+This software except object models is released under the MIT License, see [LICENSE.txt](license-url).
+
+See the [open issues][issues-url] for a full list of proposed features (and known issues).
 
 
-現時点のバッグや新規機能の依頼を確認するために[Issueページ][issues-url] をご覧ください．
-
-
-<!-- 参考文献 -->
-## 参考文献
+<!-- REFERENCES -->
+## References
 
 * [Gazebo Sim](https://gazebosim.org)
 * [aws-robomaker-small-house-world](https://github.com/aws-robotics/aws-robomaker-small-house-world)
 
 
-<p align="right">(<a href="#readme-top">上に戻る</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
