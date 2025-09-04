@@ -18,47 +18,49 @@
 
 import os
 
-import launch
-from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
 from ament_index_python.packages import get_package_share_directory
+
+from launch import LaunchDescription
+from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import PathJoinSubstitution
+from launch_ros.substitutions import FindPackageShare
+from launch_ros.actions import Node
 
 
 def generate_launch_description():
-    world_file_name = 'small_house.world'
-    package_dir = get_package_share_directory('aws_robomaker_small_house_world')
-    gazebo_ros = get_package_share_directory('gazebo_ros')
+    world_file_path = os.path.join(get_package_share_directory(
+        'aws_small_house_world'),
+        'worlds',
+        'small_house.world'
+    )
 
-    gazebo_client = launch.actions.IncludeLaunchDescription(
-	launch.launch_description_sources.PythonLaunchDescriptionSource(
-            os.path.join(gazebo_ros, 'launch', 'gzclient.launch.py')),
-        condition=launch.conditions.IfCondition(launch.substitutions.LaunchConfiguration('gui'))
-     )
-    gazebo_server = launch.actions.IncludeLaunchDescription(
-        launch.launch_description_sources.PythonLaunchDescriptionSource(
-            os.path.join(gazebo_ros, 'launch', 'gzserver.launch.py'))
+    gz_bridge_node = Node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        arguments=[
+                    "/clock" + "@rosgraph_msgs/msg/Clock" + "[ignition.msgs.Clock",
+                    "/tf" + "@tf2_msgs/msg/TFMessage" + "[ignition.msgs.Pose_V",
+                   ],
+        output='screen'
     )
 
     return LaunchDescription([
-        DeclareLaunchArgument(
-          'world',
-          default_value=[os.path.join(package_dir, 'worlds', world_file_name), ''],
-          description='SDF world file'),
-        DeclareLaunchArgument(
-            name='gui',
-            default_value='false'
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource([
+                PathJoinSubstitution([
+                    FindPackageShare('ros_gz_sim'),
+                    'launch',
+                    'gz_sim.launch.py'
+                ])
+            ]),
+            launch_arguments={
+                'gz_args' : ' -r -v 4 ' + world_file_path,
+            }.items()
         ),
+        gz_bridge_node,
         DeclareLaunchArgument(
             name='use_sim_time',
             default_value='true'
         ),
-        DeclareLaunchArgument('state',
-            default_value='true',
-            description='Set "true" to load "libgazebo_ros_state.so"'),
-        gazebo_server,
-        gazebo_client,
     ])
-
-
-if __name__ == '__main__':
-    generate_launch_description()
