@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<sdf version="1.6">
+<sdf version="1.8">
   <model name="aws_robomaker_residential_HouseWallB_01">
     <link name="link">
       <inertial>
@@ -14,13 +14,13 @@
         </geometry>
       </collision>
       <visual name="visual">
-	    <geometry>
+	      <geometry>
           <mesh>
             <uri>model://aws_robomaker_residential_HouseWallB_01/meshes/aws_HouseWallB_01_visual.DAE</uri>
           </mesh>
         </geometry>
       <meta> <layer> 2 </layer></meta>
-</visual>
+      </visual>
     </link>
 <static>1</static>
   </model>

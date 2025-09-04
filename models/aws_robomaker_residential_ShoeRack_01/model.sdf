@@ -1,18 +1,19 @@
 <?xml version="1.0" ?>
-<sdf version="1.6">
+<sdf version="1.8">
   <model name="aws_robomaker_residential_ShoeRack_01">
     <link name="link">
 
       <inertial>
         <mass>6</mass>
-          <inertia>
-            <ixx>0.02</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>0.04</iyy>
-            <iyz>0</iyz>
-            <ixx>0.02</ixx>
-          </inertia>
+        <!-- TODO: adjust inertia -->
+        <!-- <inertia>
+          <ixx>0.02</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.04</iyy>
+          <iyz>0</iyz>
+          <ixx>0.02</ixx>
+        </inertia> -->
       </inertial>
 
       <collision name="collision">
@@ -43,13 +44,13 @@
       </collision>
 
       <visual name="visual">
-	    <geometry>
+	      <geometry>
           <mesh>
             <uri>model://aws_robomaker_residential_ShoeRack_01/meshes/aws_ShoeRack_01_visual.DAE</uri>
           </mesh>
         </geometry>
-      <meta> <layer> 1 </layer></meta>
-</visual>
+        <meta> <layer> 1 </layer></meta>
+      </visual>
 
     </link>
   </model>

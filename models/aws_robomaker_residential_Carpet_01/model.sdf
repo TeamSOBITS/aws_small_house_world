@@ -1,18 +1,18 @@
 <?xml version="1.0" ?>
-<sdf version="1.6">
+<sdf version="1.8">
   <model name="aws_robomaker_residential_Carpet_01">
     <link name="link">
       <inertial>
         <mass>8.1</mass>
-	<inertia>
-	    <ixx>  1.3412920773e+00 </ixx>
-	    <ixy> -0.0000000000e+00 </ixy>
-	    <ixz>  0.0000000000e+00 </ixz>
-	    <iyy>  2.3413254318e+00 </iyy>
-	    <iyz>  0.0000000000e+00 </iyz>
-	    <izz>  1.0000339302e+00 </izz>
-	  </inertia>
-	</inertial>
+        <inertia>
+          <ixx>  1.3412920773e+00 </ixx>
+          <ixy> -0.0000000000e+00 </ixy>
+          <ixz>  0.0000000000e+00 </ixz>
+          <iyy>  2.3413254318e+00 </iyy>
+          <iyz>  0.0000000000e+00 </iyz>
+          <izz>  1.0000339302e+00 </izz>
+        </inertia>
+      </inertial>
       
       <collision name="collision">
 
@@ -42,13 +42,13 @@
       </collision>
       
       <visual name="visual">
-	    <geometry>
+	      <geometry>
           <mesh>
             <uri>model://aws_robomaker_residential_Carpet_01/meshes/aws_Carpet_01_visual.DAE</uri>
           </mesh>
         </geometry>
-      <meta> <layer> 1 </layer></meta>
-</visual>
+        <meta> <layer> 1 </layer></meta>
+      </visual>
     </link>
 
     <static>1</static>
