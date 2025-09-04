@@ -1,18 +1,18 @@
 <?xml version="1.0" ?>
-<sdf version="1.6">
+<sdf version="1.8">
   <model name="aws_robomaker_residential_ChairA_01">
     <link name="link">
       <inertial>
           <mass>7.5</mass>
-	<inertia>
-	    <ixx>  4.5075729743e-02 </ixx>
-	    <ixy> -6.2306474736e-03 </ixy>
-	    <ixz> -1.2994971650e-05 </ixz>
-	    <iyy>  4.3218438297e-02 </iyy>
-	    <iyz> -6.2426717352e-06 </iyz>
-	    <izz>  3.2980397725e-02 </izz>
-	  </inertia>
-	</inertial>
+        <inertia>
+          <ixx>  4.5075729743e-02 </ixx>
+          <ixy> -6.2306474736e-03 </ixy>
+          <ixz> -1.2994971650e-05 </ixz>
+          <iyy>  4.3218438297e-02 </iyy>
+          <iyz> -6.2426717352e-06 </iyz>
+          <izz>  3.2980397725e-02 </izz>
+        </inertia>
+      </inertial>
 
       <collision name="collision">
         <geometry>
@@ -23,13 +23,13 @@
         </geometry>
       </collision>
       <visual name="visual">
-	    <geometry>
+	      <geometry>
           <mesh>
             <uri>model://aws_robomaker_residential_ChairA_01/meshes/aws_ChairA_01_visual.DAE</uri>
           </mesh>
         </geometry>
-      <meta> <layer> 1 </layer></meta>
-</visual>
+        <meta> <layer> 1 </layer></meta>
+      </visual>
     </link>
   </model>
 </sdf>

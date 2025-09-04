@@ -1,18 +1,18 @@
 <?xml version="1.0" ?>
-<sdf version="1.6">
+<sdf version="1.8">
   <model name="aws_robomaker_residential_KitchenCabinet_01">
     <link name="link">
       <inertial>
         <mass>1</mass>
-	<inertia>
-	    <ixx>  1.0168440299e+00 </ixx>
-	    <ixy> -7.6425744877e-04 </ixy>
-	    <ixz>  3.9723161102e-01 </ixz>
-	    <iyy>  1.4853953831e+00 </iyy>
-	    <iyz>  1.1100048935e-03 </iyz>
-	    <izz>  6.0507693907e-01 </izz>
-	  </inertia>
-	</inertial>
+        <inertia>
+          <ixx>  1.0168440299e+00 </ixx>
+          <ixy> -7.6425744877e-04 </ixy>
+          <ixz>  3.9723161102e-01 </ixz>
+          <iyy>  1.4853953831e+00 </iyy>
+          <iyz>  1.1100048935e-03 </iyz>
+          <izz>  6.0507693907e-01 </izz>
+        </inertia>
+      </inertial>
       <collision name="collision">
         <laser_retro>0</laser_retro>
         <max_contacts>10</max_contacts>
@@ -51,13 +51,13 @@
         </geometry>
       </collision>
       <visual name="visual">
-	    <geometry>
+	      <geometry>
           <mesh>
             <uri>model://aws_robomaker_residential_KitchenCabinet_01/meshes/aws_KitchenCabinet_01_visual.DAE</uri>
           </mesh>
         </geometry>
-      <meta> <layer> 1 </layer></meta>
-</visual>
+        <meta> <layer> 1 </layer></meta>
+      </visual>
     </link>
 
     <static>1</static>
