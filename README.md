@@ -8,15 +8,16 @@
 
 * Update .rosinstall to clone this repository and run `rosws update`
 ```
-- git: {local-name: src/aws-robomaker-small-house-world, uri: 'https://github.com/aws-robotics/aws-robomaker-small-house-world.git', version: master}
+- git: {local-name: src/aws-robomaker-small-house-world, uri: 'https://github.com/aws-robotics/aws-robomaker-small-house-world.git', version: ros2}
 ```
 * Add the following to your launch file:
-```xml
-<launch>
-  <!-- Launch World -->
-  <include file="$(find aws_robomaker_small_house_world)/launch/small_house.launch"/>
-  ...
-</launch>
+```python
+    small_house = launch.actions.IncludeLaunchDescription(
+        launch.launch_description_sources.PythonLaunchDescriptionSource(
+            os.path.join(
+                get_package_share_directory('aws_robomaker_small_house_world'),
+                'launch',
+                'small_house.launch.py')))
 ```
 
 # Load directly into Gazebo (without ROS)
@@ -28,12 +29,14 @@ gazebo worlds/small_house.world
 # ROS Launch with Gazebo viewer (without a robot)
 ```bash
 # build for ROS
+source /opt/ros/dashing/setup.bash
+source /usr/share/gazebo/setup.sh
 rosdep install --from-paths . --ignore-src -r -y
 colcon build
 
 # run in ROS
 source install/setup.sh
-roslaunch aws_robomaker_small_house_world view_small_house.launch
+ros2 launch aws_robomaker_small_house_world small_house.launch.py gui:=true
 ```
 
 # Building
@@ -42,13 +45,10 @@ Include this as a .rosinstall dependency in your SampleApplication simulation wo
 To build it outside an application, note there is no robot workspace. It is a simulation workspace only.
 
 ```bash
-$ rosws update
-$ rosdep install --from-paths . --ignore-src -r -y
-$ colcon build
+rosws update
+rosdep install --from-paths . --ignore-src -r -y
+colcon build
 ```
-
-# Robot Simulation - Initial Position
-Do not use (0,0,0) for the initial position as it will collide with the lounge chairs. Instead, a resonable position is (3.5,1.0,0.0).
 
 # How to Replace Photos in Picture Frames
 
@@ -83,3 +83,12 @@ Below is a table showing portrait type to picture resolution data and custom ima
 | PortraitE_01 | 700x1024 | maggie |
 | PortraitE_02 | 700x1024 | iftach |
 
+# Disclaimer
+
+All objects in the scene should be static objects as intended for this sample app.
+If there is a need for some of objects to be non-static, change their 'static' flag in the world file to 'false', 
+and make sure they have correct mass and inertia values in their model.sdf
+Link: http://gazebosim.org/tutorials?tut=inertia&cat=build_robot
+
+Currently, objects in scene have inconsistent mass and inertia values, they will be fixed in the future change.
+Inconsistent mass and inertia should not affect static object simulation.
