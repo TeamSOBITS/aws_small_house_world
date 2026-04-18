@@ -6,9 +6,9 @@
   <description>
     AWS RoboMaker package for a house world with multiple rooms and furniture for Gazebo simulations.
   </description>
+  <maintainer email="kvalentincardenas@gmail.com">Keith Valentin</maintainer>
   <license>Apache 2.0</license>
   <author email="ros-contributions@amazon.com">AWS RoboMaker</author>
-  <maintainer email="kvalentincardenas@gmail.com">Keith Valentin</maintainer>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
