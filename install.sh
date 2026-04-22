@@ -3,7 +3,7 @@ echo "╔══╣ Setup: AWS Small House World (STARTING) ╠══╗"
 
 
 # Add Gazebo models to GZ_SIM_RESOURCE_PATH
-echo "export GZ_SIM_RESOURCE_PATH=\$\{GZ_SIM_RESOURCE_PATH\}:${HOME}/colcon_ws/install/aws_small_house_world/share/aws_small_house_world/models" >> ~/.bashrc
+echo "export GZ_SIM_RESOURCE_PATH=\${GZ_SIM_RESOURCE_PATH}:\${HOME}/colcon_ws/install/aws_small_house_world/share/aws_small_house_world/models" >> ~/.bashrc
 
 # Install Gazebo Harmonic
 sudo curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg
